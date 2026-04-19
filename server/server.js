@@ -43,10 +43,14 @@ app.use("/api/message", messageRouter);
 
 await connectDB();
 
-const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
+
+if(process.env.NODE_ENV !== "production"){
+    const PORT = process.env.PORT || 5000;
+    server.listen(PORT, () => {
     console.log("Server is running on PORT:", PORT);
-});
+    });
+}
 
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
+export default server;
+
